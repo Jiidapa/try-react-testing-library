@@ -59,13 +59,14 @@ const Detail = styled.div`
 const TextColor = styled.div`
   margin-left: 0.5rem;
   color: ${props => {
+    const { status } = props
     let color = ''
-    if (props.status === true) {
+    if (status === 'true') {
       color = '#5BD2A7'
-    } else if (props.status === false) {
+    } else if (status === 'false') {
       color = '#ff8989'
     } else {
-      color = 'rgba(0,0,0,0.45)'
+      color = '#8e8e8e'
     }
     return color
   }};
@@ -74,13 +75,14 @@ const CheckIcon = styled(Check)`
   fill: #8e8e8e;
   width: 15px;
   fill: ${props => {
+    const { status } = props
     let color = ''
-    if (props.status === true) {
+    if (status === 'true') {
       color = '#5BD2A7'
-    } else if (props.status === false) {
+    } else if (status === 'false') {
       color = '#ff8989'
     } else {
-      color = 'rgba(0,0,0,0.45)'
+      color = '#8e8e8e'
     }
     return color
   }};
@@ -96,10 +98,10 @@ const Error = styled.div`
 function App() {
   const [password, setPassword] = useState()
   const [isError, setError] = useState()
-  const [isLength, setLength] = useState()
-  const [isCaptial, setCapital] = useState()
-  const [isNumber, setNumber] = useState()
-  const [isSpace, setSpace] = useState()
+  const [isLength, setLength] = useState('')
+  const [isCaptial, setCapital] = useState('')
+  const [isNumber, setNumber] = useState('')
+  const [isSpace, setSpace] = useState('')
 
   useEffect(() => {
     checkPassword(password)
@@ -110,37 +112,36 @@ function App() {
     const numberRegEx = /[0-9]/gm
     const spaceRegEx = /^\S*$/gm
 
-    console.log(pwd)
     if (password) {
       setError(false)
       if (password.length > 7) {
-        setLength(true)
+        setLength('true')
       } else {
-        setLength(false)
+        setLength('false')
       }
       if (capitalLetterRexEx.test(password)) {
-        setCapital(true)
+        setCapital('true')
       } else {
-        setCapital(false)
+        setCapital('false')
       }
 
       if (numberRegEx.test(password)) {
-        setNumber(true)
+        setNumber('true')
       } else {
-        setNumber(false)
+        setNumber('false')
       }
 
       if (spaceRegEx.test(password)) {
-        setSpace(true)
+        setSpace('true')
       } else {
-        setSpace(false)
+        setSpace('false')
       }
     } else if (pwd === '') {
-      setError(true)
-      setLength()
-      setCapital()
-      setNumber()
-      setSpace()
+      setError('true')
+      setLength('')
+      setCapital('')
+      setNumber('')
+      setSpace('')
     } else {
       setError(undefined)
     }
