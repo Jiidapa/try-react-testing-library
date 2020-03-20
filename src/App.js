@@ -151,7 +151,7 @@ function App() {
       <Card>
         <FieldLayout>
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" placeholder="Enter Password" onChange={e => setPassword(e.target.value)} />
+          <input type="password" id="password" placeholder="Enter Password" maxLength="16" onChange={e => setPassword(e.target.value)} />
         </FieldLayout>
         <Error>{isError && <>This field is required.</>}</Error>
         <Detail>Password must include:</Detail>

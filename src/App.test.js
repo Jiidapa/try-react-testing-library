@@ -43,6 +43,15 @@ test('default', () => {
   expect(getByText(data[3])).toHaveStyle(`color: ${defaultColor};`)
 })
 
+test('[8-16 Characters] success case', () => {
+  const { container, getByText } = render(<App />)
+  const passwordInput = getByLabelText(container, 'Password')
+  fireEvent.change(passwordInput, { target: { value: lengthData } })
+
+  expect(getByText(data[0])).toBeInTheDocument()
+  expect(getByText(data[0])).toHaveStyle(`color: ${success};`)
+})
+
 test('[8-16 Characters] fail case', () => {
   const { container, getByText } = render(<App />)
   const passwordInput = getByLabelText(container, 'Password')
